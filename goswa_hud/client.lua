@@ -1,36 +1,48 @@
 -- client.lua
--- Affiche un HUD avec santé, armure et argent fictif
+-- HUD dynamique + message de bienvenue
 
-local playerMoney = 1000 -- Argent de départ
+local playerMoney = 1000 -- argent de base
 
+-- 🩺 HUD qui change de couleur selon la santé
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(0) -- s'exécute chaque frame
+        Citizen.Wait(0)
 
-        -- Récupération de la santé et de l'armure
         local playerPed = PlayerPedId()
-        local health = GetEntityHealth(playerPed) - 100 -- GTA health commence à 100
+        local health = GetEntityHealth(playerPed) - 100
         local armor = GetPedArmour(playerPed)
 
-        -- Affichage du HUD
-        SetTextFont(0)
-        SetTextProportional(1)
+        -- Couleur selon la santé
+        local r, g, b = 0, 255, 0
+        if health < 50 then
+            r, g, b = 255, 0, 0 -- rouge
+        elseif health < 100 then
+            r, g, b = 255, 255, 0 -- jaune
+        end
+
+        -- Affichage du texte
+        SetTextFont(4)
         SetTextScale(0.35, 0.35)
-        SetTextColour(255, 255, 255, 255)
+        SetTextColour(r, g, b, 255)
         SetTextOutline()
         SetTextEntry("STRING")
-        AddTextComponentString("💓 Vie: " .. health .. " | 🛡️ Armure: " .. armor .. " | 💵 Argent: $" .. playerMoney)
-        DrawText(0.015, 0.95) -- position en bas à gauche
+        AddTextComponentString(("💓 Vie: %s | 🛡️ Armure: %s | 💵 Argent: $%s"):format(health, armor, playerMoney))
+        DrawText(0.015, 0.95)
     end
 end)
 
--- Commande pour ajouter de l'argent (test)
-RegisterCommand("addmoney", function(source, args, rawCommand)
+-- 🕹️ Commande pour ajouter de l’argent (test)
+RegisterCommand("addmoney", function(source, args)
     local amount = tonumber(args[1])
     if amount then
         playerMoney = playerMoney + amount
-        print("Argent ajouté: $" .. amount .. " | Total: $" .. playerMoney)
+        TriggerEvent('chat:addMessage', { args = { "HUD", "Tu as ajouté $" .. amount .. " à ton argent." } })
     else
-        print("Utilisation: /addmoney 100")
+        TriggerEvent('chat:addMessage', { args = { "HUD", "Utilisation : /addmoney 100" } })
     end
 end, false)
+
+-- 🎉 Message de bienvenue à la connexion
+AddEventHandler('playerSpawned', function()
+    TriggerEvent('chat:addMessage', { args = { "Serveur", "👋 Bienvenue sur Goswa RP Server !" } })
+end)
