@@ -1,0 +1,7 @@
+goswa_bank/
+├── fxmanifest.lua
+├── client.lua
+└── html/
+    ├── index.html
+    ├── style.css
+    └── script.js
