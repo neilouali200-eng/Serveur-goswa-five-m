@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Banque</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="bankUI">
+        <h2>🏦 Banque Goswa</h2>
+        <p>Solde: $<span id="money">0</span></p>
+        <input type="number" id="amount" placeholder="Montant">
+        <div class="buttons">
+            <button onclick="deposit()">💰 Déposer</button>
+            <button onclick="withdraw()">💸 Retirer</button>
+        </div>
+        <button onclick="closeBank()">❌ Fermer</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
