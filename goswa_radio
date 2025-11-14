@@ -1,0 +1,7 @@
+goswa_radio/
+├─ client/main.lua
+├─ nui/index.html
+├─ nui/style.css
+├─ nui/script.js
+├─ fxmanifest.lua
+└─ README.md
