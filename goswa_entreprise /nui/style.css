@@ -1,0 +1,6 @@
+body { font-family: Arial; background-color: #222; color: #fff; }
+#tablet { padding: 20px; display: block; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid #fff; padding: 5px; text-align: center; }
+button { padding: 5px 10px; margin: 2px; cursor: pointer; }
+input { width: 50px; text-align: center; }
