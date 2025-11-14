@@ -1,15 +1,12 @@
-goswa_entreprise/
+goswa_entreprise/          
 │
 ├─ client/
 │  └─ main.lua
-│
 ├─ server/
 │  └─ main.lua
-│
 ├─ nui/
 │  ├─ index.html
 │  ├─ style.css
 │  └─ script.js
-│
-├─ fxmanifest.lua
+├─ fxmanifest.lua          
 └─ README.md
