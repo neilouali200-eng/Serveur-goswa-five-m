@@ -1,5 +1,0 @@
-pillbox_custom_interior/
-├─ fxmanifest.lua
-├─ stream/
-│   └─ pillbox_props.ytyp   (ou .ydr/.yds/.ymap)
-└─ client.lua
